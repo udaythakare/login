@@ -27,7 +27,7 @@ app.use(express.json())
 app.get("/", (req, res) => {
     // console.log(req.session.user)
     // if (req.session.user) {
-        res.render("index.hbs", { user: req.session.user })
+        res.render("index.hbs")
     // }
     // else {
         // res.render("index.hbs")
