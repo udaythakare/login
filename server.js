@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const mysql = require("mysql");
 const bodyParser = require('body-parser');
-const session = require('express-session');
+//const session = require('express-session');
 app.use(bodyParser.urlencoded({ extended: true }));
 let connection = mysql.createConnection({
     host: 'localhost',
@@ -10,11 +10,11 @@ let connection = mysql.createConnection({
     password: 'uday',
     database: 'frontend'
 })
-app.use(session({
-    secret: 'lol', // Replace 'your_secret_key' with your own secret key for session encryption
-    resave: false,
-    saveUninitialized: true
-}));
+// app.use(session({
+//     secret: 'lol', // Replace 'your_secret_key' with your own secret key for session encryption
+//     resave: false,
+//     saveUninitialized: true
+// }));
 
 
 module.exports = connection;
@@ -26,12 +26,12 @@ app.use(express.json())
 
 app.get("/", (req, res) => {
     // console.log(req.session.user)
-    if (req.session.user) {
+    // if (req.session.user) {
         res.render("index.hbs", { user: req.session.user })
-    }
-    else {
-        res.render("index.hbs")
-    }
+    // }
+    // else {
+        // res.render("index.hbs")
+    // }
 
 })
 
@@ -79,7 +79,7 @@ app.post("/login", async (req, res) => {
     const user = await checkUserForLogin(username, password)
     console.log(user)
     if (user.length > 0) {
-        req.session.user = user[0];
+        // req.session.user = user[0];
         res.redirect("/")
     }
     else {
