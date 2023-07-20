@@ -131,6 +131,6 @@ connection.connect(function (err) {
     console.log("database connected")
 })
 
-app.listen(3006, () => {
+app.listen(process.env.PORT, () => {
     console.log('listening on port 3006')
 })
