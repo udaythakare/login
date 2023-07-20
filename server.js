@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // }));
 
 
-module.exports = connection;
+// module.exports = connection;
 app.use(express.static("./views"));
 app.use(express.static("./photos"));
 app.use(express.static("./css"));
