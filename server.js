@@ -115,16 +115,16 @@ function checkEmailExists(email) {
     });
 }
 
-app.get("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.log("Error destroying session:", err);
-        } else {
-            console.log("User logged out successfully!");
-            res.redirect("/");
-        }
-    });
-});
+// app.get("/logout", (req, res) => {
+//     req.session.destroy((err) => {
+//         if (err) {
+//             console.log("Error destroying session:", err);
+//         } else {
+//             console.log("User logged out successfully!");
+//             res.redirect("/");
+//         }
+//     });
+// });
 
 connection.connect(function (err) {
     if (err) throw err;
