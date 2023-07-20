@@ -4,12 +4,12 @@ const mysql = require("mysql");
 const bodyParser = require('body-parser');
 //const session = require('express-session');
 app.use(bodyParser.urlencoded({ extended: true }));
-let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'uday',
-    database: 'frontend'
-})
+// let connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'uday',
+//     database: 'frontend'
+// })
 // app.use(session({
 //     secret: 'lol', // Replace 'your_secret_key' with your own secret key for session encryption
 //     resave: false,
@@ -126,10 +126,10 @@ function checkEmailExists(email) {
 //     });
 // });
 
-connection.connect(function (err) {
-    if (err) throw err;
-    console.log("database connected")
-})
+// connection.connect(function (err) {
+//     if (err) throw err;
+//     console.log("database connected")
+// })
 
 app.listen(process.env.PORT, () => {
     console.log('listening on port 3006')
