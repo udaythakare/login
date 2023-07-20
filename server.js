@@ -42,50 +42,50 @@ app.get("/register", (req, res) => {
     res.render("registration.hbs")
 })
 
-app.post("/register", async (req, res) => {
-    const { username, email, password } = req.body;
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false) {
-        res.render("registration.hbs", { msg: "Invalid Email!" })
-    }
-    else {
-        try {
-            // Check if the email is already registered in the database
-            const isAlreadyUser = await checkEmailExists(email);
+// app.post("/register", async (req, res) => {
+//     const { username, email, password } = req.body;
+//     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false) {
+//         res.render("registration.hbs", { msg: "Invalid Email!" })
+//     }
+//     else {
+//         try {
+//             // Check if the email is already registered in the database
+//             const isAlreadyUser = await checkEmailExists(email);
 
-            if (isAlreadyUser.length > 0) {
-                // Email already exists, handle the error or redirect back to the registration page
-                return res.send("Email already registered!");
-            }
+//             if (isAlreadyUser.length > 0) {
+//                 // Email already exists, handle the error or redirect back to the registration page
+//                 return res.send("Email already registered!");
+//             }
 
-            // Email does not exist, insert the user into the database
-            connection.query(
-                "INSERT INTO user (name, email, password) VALUES (?, ?, ?)",
-                [username, email, password],
-                (error, results) => {
-                    if (error) throw error;
-                    console.log("New user inserted!");
-                    res.redirect("/login");
-                }
-            );
-        } catch (error) {
-            console.log(error);
-            res.send("An error occurred while processing your request.");
-        }
-    }
-});
+//             // Email does not exist, insert the user into the database
+//             connection.query(
+//                 "INSERT INTO user (name, email, password) VALUES (?, ?, ?)",
+//                 [username, email, password],
+//                 (error, results) => {
+//                     if (error) throw error;
+//                     console.log("New user inserted!");
+//                     res.redirect("/login");
+//                 }
+//             );
+//         } catch (error) {
+//             console.log(error);
+//             res.send("An error occurred while processing your request.");
+//         }
+//     }
+// });
 
-app.post("/login", async (req, res) => {
-    const { username, password } = req.body
-    const user = await checkUserForLogin(username, password)
-    console.log(user)
-    if (user.length > 0) {
-        // req.session.user = user[0];
-        res.redirect("/")
-    }
-    else {
-        res.send("wrong username or password")
-    }
-})
+// app.post("/login", async (req, res) => {
+//     const { username, password } = req.body
+//     const user = await checkUserForLogin(username, password)
+//     console.log(user)
+//     if (user.length > 0) {
+//         // req.session.user = user[0];
+//         res.redirect("/")
+//     }
+//     else {
+//         res.send("wrong username or password")
+//     }
+// })
 
 //function if the username with same passworld exists
 function checkUserForLogin(username, password) {
